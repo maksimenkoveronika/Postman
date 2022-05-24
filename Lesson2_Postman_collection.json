@@ -1,0 +1,228 @@
+{
+	"info": {
+		"_postman_id": "817bb308-a475-4b27-b3d2-4df6720476da",
+		"name": "Lesson_Postman_2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "login",
+							"value": "Nika",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "27t222a",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://162.55.220.72:5007/login",
+					"protocol": "http",
+					"host": [
+						"162",
+						"55",
+						"220",
+						"72"
+					],
+					"port": "5007",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							" let jsonData = pm.response.json();\r",
+							" let user_token = jsonData.token\r",
+							"\r",
+							"pm.environment.set(\"token\", user_token);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "login",
+							"value": "Nika",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "27t222a",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://162.55.220.72:5007/login",
+					"protocol": "http",
+					"host": [
+						"162",
+						"55",
+						"220",
+						"72"
+					],
+					"port": "5007",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_info",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"let jsonData = pm.response.json()\r",
+							"let req = JSON.parse(request.data)\r",
+							"let req_salary = req.salary\r",
+							"let req_age = req.age\r",
+							"\r",
+							"let salary_check_12 = req.salary * 2.9\r",
+							"let salary_12 = jsonData.qa_salary_after_12_months\r",
+							"\r",
+							"let resp_age = jsonData.person.u_age\r",
+							"\r",
+							"console.log(salary_check_12)\r",
+							"console.log(salary_12)\r",
+							"console.log(\"req_salary = \", req_salary)\r",
+							"\r",
+							"pm.test(\"salary_check_12\", function () {\r",
+							"        pm.expect(salary_12).to.eql(salary_check_12);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"age\", function () {\r",
+							"        pm.expect(req_age).to.eql(resp_age);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Nika\",\r\n    \"age\": 27,\r\n    \"salary\": 1500,\r\n    \"auth_token\": \"/s34lfgbj/Nika/jjd909/19754kjkWpqc289727t222a237857evny\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://162.55.220.72:5007/user_info",
+					"protocol": "http",
+					"host": [
+						"162",
+						"55",
+						"220",
+						"72"
+					],
+					"port": "5007",
+					"path": [
+						"user_info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_info_token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"let jsonData = pm.response.json()\r",
+							"let req = JSON.parse(request.data)\r",
+							"let req_salary = req.salary\r",
+							"let req_age = req.age\r",
+							"\r",
+							"let salary_check_12 = req.salary * 2.9\r",
+							"let salary_12 = jsonData.qa_salary_after_12_months\r",
+							"\r",
+							"let resp_age = jsonData.person.u_age\r",
+							"\r",
+							"console.log(salary_check_12)\r",
+							"console.log(salary_12)\r",
+							"console.log(\"req_salary = \", req_salary)\r",
+							"\r",
+							"pm.test(\"salary_check_12\", function () {\r",
+							"        pm.expect(salary_12).to.eql(salary_check_12);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"age\", function () {\r",
+							"        pm.expect(req_age).to.eql(resp_age);\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Nika\",\r\n    \"age\": 27,\r\n    \"salary\": 1500,\r\n    \"auth_token\": \"{{}token}}}\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}:{{port}}/user_info",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"user_info"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
